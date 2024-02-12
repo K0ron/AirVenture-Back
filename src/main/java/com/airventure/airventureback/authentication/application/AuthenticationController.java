@@ -8,6 +8,7 @@ import com.airventure.airventureback.authentication.domain.service.UserRegisterS
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +32,7 @@ public class AuthenticationController {
         this.userDetailsService = userDetailsService;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200/")
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User userBody) throws Exception {
         try {
@@ -42,8 +44,10 @@ public class AuthenticationController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200/")
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User userBody) throws Exception {
+        System.out.println(userBody);
         try {
             return ResponseEntity.status(201).body(userRegisterService.UserRegister(userBody));
         } catch (BadCredentialsException e) {
