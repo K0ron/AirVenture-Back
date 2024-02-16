@@ -24,6 +24,9 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
+ /*   @Column(name = "token", nullable = false) //crear el token
+    private String token;*/
+
     @Column(name = "is_enabled", nullable = false)
     private boolean isEnabled;
 
@@ -94,4 +97,12 @@ public class User {
     public void setRoles(Role roles) {
         this.roles = roles;
     }
+
+/*    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }*/
 }

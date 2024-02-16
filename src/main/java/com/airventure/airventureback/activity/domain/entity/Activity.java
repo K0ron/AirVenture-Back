@@ -39,7 +39,7 @@ public class Activity {
     @ManyToMany
     @JoinTable(
             name = "activity_category",
-            joinColumns = @JoinColumn(name = "activty_id"),
+            joinColumns = @JoinColumn(name = "activity_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private Set<Category> categories = new HashSet<>();
