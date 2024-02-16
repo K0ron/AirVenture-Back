@@ -15,7 +15,10 @@ import java.util.function.Function;
 
 @Service
 public class JwtTokenService {
-        private String secretKey = System.getenv("JWT_KEY");
+
+
+
+        private String secretKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJpZCI6bnVsbCwiZmlyc3ROYW1lIjoiTGFzdCIsImxhc3ROYW1lIjoiVXNlciIsImVtYWlsIjoibGFzdHVzZXJAdGVzdC5jb20ifQ5x6FLmIKmB5BjDnbSuL2lvMVewFcP0jMjQSRNJG02OU";
         private static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
         public String generateToken(UserDetails userDetails) {
             Date now = new Date();

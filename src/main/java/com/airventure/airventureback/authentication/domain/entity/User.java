@@ -1,6 +1,10 @@
 package com.airventure.airventureback.authentication.domain.entity;
 
+import com.airventure.airventureback.reservation.domain.entity.Reservation;
 import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -26,6 +30,14 @@ public class User {
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
     private Role roles;
+
+    @ManyToMany
+    @JoinTable (
+            name = "user_reservation",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn( name = "reservation_id")
+    )
+    private Set<Reservation> reservations = new HashSet<>();
 
     public Long getId() {
         return id;
