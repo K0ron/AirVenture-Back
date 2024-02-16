@@ -1,6 +1,6 @@
-package com.airventure.airventureback.authentication.domain.service;
+package com.airventure.airventureback.user.domain.service;
 
-import com.airventure.airventureback.authentication.domain.entity.User;
+import com.airventure.airventureback.user.domain.entity.User;
 import com.airventure.airventureback.authentication.infrastructure.repository.UserRepository;
 import org.springframework.stereotype.Service;
 

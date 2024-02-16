@@ -1,6 +1,6 @@
 package com.airventure.airventureback.authentication.domain.dto;
 
-import com.airventure.airventureback.authentication.domain.entity.Role;
+import com.airventure.airventureback.user.domain.entity.Role;
 
 public class UserLoginResponse {
 
