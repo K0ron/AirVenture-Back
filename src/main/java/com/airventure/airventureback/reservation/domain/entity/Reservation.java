@@ -1,6 +1,7 @@
 package com.airventure.airventureback.reservation.domain.entity;
 
 import com.airventure.airventureback.activity.domain.entity.Activity;
+import com.airventure.airventureback.authentication.domain.entity.User;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -19,6 +20,9 @@ public class Reservation {
 
     @ManyToMany(mappedBy = "reservations")
     private Set<Activity> activities = new HashSet<>();
+
+    @ManyToMany(mappedBy = "reservations")
+    private Set<User> reservations = new HashSet<>();
 
     public Long getId() {
         return id;

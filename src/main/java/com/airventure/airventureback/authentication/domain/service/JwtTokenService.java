@@ -1,5 +1,6 @@
 package com.airventure.airventureback.authentication.domain.service;
 
+import com.airventure.airventureback.authentication.domain.entity.Token;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -15,19 +16,23 @@ import java.util.function.Function;
 
 @Service
 public class JwtTokenService {
+
+
+
         private String secretKey = System.getenv("JWT_KEY");
         private static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
-        public String generateToken(UserDetails userDetails) {
+        public Token generateToken(UserDetails userDetails) {
             Date now = new Date();
-            Date expiryDate = new Date(now.getTime() + JWT_TOKEN_VALIDITY * 1000);
-            return Jwts.
+            Token token = new Token();
+            token.setToken(Jwts.
                     builder()
                     .setSubject(userDetails.getUsername())
                     .setIssuedAt(new Date(System.currentTimeMillis()))
-                    .setExpiration(expiryDate)
+                    .setExpiration(new Date(now.getTime() + JWT_TOKEN_VALIDITY * 1000))
                     .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                     .compact()
-                    ;
+            );
+            return token;
         }
 
         private Key getSignInKey() {
