@@ -20,22 +20,22 @@ public class ReservationController {
         return reservationService.getAllReservations();
     }
     @CrossOrigin(origins = "http://localhost:4200/")
-    @RequestMapping(value = "/reservation/{id}", method = RequestMethod.GET)
+    @GetMapping("/reservation/{id}")
     Reservation readOne(@PathVariable Long id) {
         return reservationService.getOneReservation(id);
     }
     @CrossOrigin(origins = "http://localhost:4200/")
-    @RequestMapping(value = "/reservations", method = RequestMethod.POST)
+    @PostMapping( "/reservations")
     Reservation create(@RequestBody Reservation newReservation) {
         return reservationService.createReservation(newReservation);
     }
     @CrossOrigin(origins = "http://localhost:4200/")
-    @RequestMapping(value = "/reservation/{id}", method = RequestMethod.PUT)
+    @PutMapping("/reservation/{id}")
     Reservation edit(@RequestBody Reservation newReservation, @PathVariable Long id) {
         return reservationService.updateReservation(newReservation, id);
     }
     @CrossOrigin(origins = "http://localhost:4200/")
-    @RequestMapping(value = "/reservation/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping("/reservation/{id}")
     void delete(@PathVariable Long id) {
         reservationService.deleteReservation(id);
     }
