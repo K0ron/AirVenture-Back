@@ -1,7 +1,7 @@
 package com.airventure.airventureback.reservation.domain.entity;
 
 import com.airventure.airventureback.activity.domain.entity.Activity;
-import com.airventure.airventureback.authentication.domain.entity.User;
+import com.airventure.airventureback.user.domain.entity.User;
 import jakarta.persistence.*;
 
 import java.util.Date;

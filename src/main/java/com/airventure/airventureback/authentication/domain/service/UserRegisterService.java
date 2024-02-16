@@ -1,7 +1,7 @@
 package com.airventure.airventureback.authentication.domain.service;
 
-import com.airventure.airventureback.authentication.domain.dto.UserDTO;
-import com.airventure.airventureback.authentication.domain.entity.User;
+import com.airventure.airventureback.user.domain.dto.UserDTO;
+import com.airventure.airventureback.user.domain.entity.User;
 import com.airventure.airventureback.authentication.infrastructure.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

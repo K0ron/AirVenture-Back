@@ -1,9 +1,7 @@
-package com.airventure.airventureback.authentication.application;
-import com.airventure.airventureback.authentication.domain.entity.User;
-import com.airventure.airventureback.authentication.domain.service.UserService;
+package com.airventure.airventureback.user.application;
+import com.airventure.airventureback.user.domain.entity.User;
+import com.airventure.airventureback.user.domain.service.UserService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 public class UserController {

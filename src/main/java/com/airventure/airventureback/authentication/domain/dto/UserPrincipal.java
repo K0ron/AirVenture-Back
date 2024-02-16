@@ -1,13 +1,12 @@
 package com.airventure.airventureback.authentication.domain.dto;
 
-import com.airventure.airventureback.authentication.domain.entity.User;
+import com.airventure.airventureback.user.domain.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class UserPrincipal implements UserDetails {

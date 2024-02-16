@@ -1,7 +1,7 @@
 package com.airventure.airventureback.authentication.application;
 
 import com.airventure.airventureback.authentication.domain.entity.Token;
-import com.airventure.airventureback.authentication.domain.entity.User;
+import com.airventure.airventureback.user.domain.entity.User;
 import com.airventure.airventureback.authentication.domain.service.JwtTokenService;
 import com.airventure.airventureback.authentication.domain.service.UserDetailsServiceImpl;
 import com.airventure.airventureback.authentication.domain.service.UserLoginService;

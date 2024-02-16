@@ -1,4 +1,4 @@
-package com.airventure.airventureback.authentication.domain.entity;
+package com.airventure.airventureback.user.domain.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
