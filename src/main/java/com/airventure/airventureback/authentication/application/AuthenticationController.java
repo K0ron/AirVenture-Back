@@ -1,6 +1,7 @@
 package com.airventure.airventureback.authentication.application;
 
 import com.airventure.airventureback.authentication.domain.entity.Token;
+import com.airventure.airventureback.user.domain.dto.UserBodyDTO;
 import com.airventure.airventureback.user.domain.entity.User;
 import com.airventure.airventureback.authentication.domain.service.JwtTokenService;
 import com.airventure.airventureback.authentication.domain.service.UserDetailsServiceImpl;
@@ -36,6 +37,7 @@ public class AuthenticationController {
         try {
             userLoginService.login(userBody);
             Token token = jwtTokenService.generateToken(userDetailsService.loadUserByUsername(userBody.getEmail()));
+            User user = userLoginService.getUserEntityByEmail(userBody.getEmail());
             ResponseCookie jwtCookie = ResponseCookie.from("token", token.getToken())
                     .httpOnly(true)
                     .path("/")
@@ -43,9 +45,17 @@ public class AuthenticationController {
                     .sameSite("Strict")
                     .build();
 
-            return ResponseEntity.ok()
+            UserBodyDTO userBodyDTO = new UserBodyDTO();
+            userBodyDTO.setId(user.getId());
+            userBodyDTO.setEmail(user.getEmail());
+            userBodyDTO.setFirstName(user.getFirstName());
+            userBodyDTO.setLastName(user.getLastName());
+            System.out.println(userBodyDTO.getLastName());
+
+        return ResponseEntity.ok()
                     .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
-                    .build();
+                    .body(userBodyDTO); //cette ligne renvoie le DTO dans le body
+                    /*.build();*/
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }

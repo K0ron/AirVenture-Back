@@ -12,7 +12,6 @@ public class UserService {
         this.repository = repository;
     }
 
-
     public User getOneUser(Long id) {
         return repository.findById(id)
                 .orElseThrow(/*() -> new ArticleNotFoundException(id)*/)
@@ -25,7 +24,7 @@ public class UserService {
                     user.setFirstName(newUser.getFirstName());
                     user.setLastName(newUser.getLastName());
                     user.setEmail(newUser.getEmail());
-                    user.setPassword(newUser.getPassword());
+
 
           /*          if (!newArticle.getComments().isEmpty()){
                         for (Comment comment: newArticle.getComments()) {
@@ -42,4 +41,5 @@ public class UserService {
     public void deleteUser(Long id) {
         repository.deleteById(id);
     }
+
 }
