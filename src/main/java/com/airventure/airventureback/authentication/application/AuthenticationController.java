@@ -7,11 +7,11 @@ import com.airventure.airventureback.authentication.domain.service.JwtTokenServi
 import com.airventure.airventureback.authentication.domain.service.UserDetailsServiceImpl;
 import com.airventure.airventureback.authentication.domain.service.UserLoginService;
 import com.airventure.airventureback.authentication.domain.service.UserRegisterService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.*;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AuthenticationController {
@@ -50,7 +50,6 @@ public class AuthenticationController {
             userBodyDTO.setEmail(user.getEmail());
             userBodyDTO.setFirstName(user.getFirstName());
             userBodyDTO.setLastName(user.getLastName());
-            System.out.println(userBodyDTO.getLastName());
 
         return ResponseEntity.ok()
                     .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
@@ -63,11 +62,24 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User userBody) throws Exception {
-        System.out.println(userBody);
         try {
             return ResponseEntity.status(201).body(userRegisterService.UserRegister(userBody));
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(400).build();
         }
     }
+
+   /* @PostMapping("/logout")
+    public void logout(HttpServletResponse response, @CookieValue(name = "token", required = false) Cookie cookie) {
+        if (cookie != null) {
+            ResponseCookie deleteCookie = ResponseCookie.from("token", "")
+                    .httpOnly(true)
+                    .path("/")
+                    .maxAge(0)
+                    .sameSite("Strict")
+                    .build();
+
+            response.addHeader(HttpHeaders.SET_COOKIE, deleteCookie.toString());
+        }
+    } marche pas*/
 }
