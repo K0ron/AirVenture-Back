@@ -4,6 +4,7 @@ import com.airventure.airventureback.category.domain.Category;
 import com.airventure.airventureback.reservation.domain.entity.Reservation;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +14,11 @@ public class Activity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "continent", nullable = false)
+    private String continent;
+
+    @Column(name = "image", nullable = false)
+    private String image;
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -26,7 +32,7 @@ public class Activity {
     private String location;
 
     @Column(name = "price", nullable = false)
-    private String price;
+    private BigDecimal price;
 
     @ManyToMany
     @JoinTable(
@@ -84,11 +90,27 @@ public class Activity {
         this.location = location;
     }
 
-    public String getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getContinent() {
+        return continent;
+    }
+
+    public void setContinent(String continent) {
+        this.continent = continent;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

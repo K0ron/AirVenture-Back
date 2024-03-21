@@ -1,12 +1,17 @@
 package com.airventure.airventureback.user.domain.dto;
 
-import com.airventure.airventureback.user.domain.entity.Role;
+import com.airventure.airventureback.reservation.domain.entity.Reservation;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class UserBodyDTO {
     private Long id;
     private String firstName;
     private String lastName;
     private String email;
+    private Set<Reservation> reservations = new HashSet<>();
+
 
     public Long getId() {
         return id;
@@ -40,5 +45,11 @@ public class UserBodyDTO {
         this.email = email;
     }
 
+    public Set<Reservation> getReservations() {
+        return reservations;
+    }
 
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
+    }
 }

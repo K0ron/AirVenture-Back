@@ -98,11 +98,11 @@ public class User {
         this.roles = roles;
     }
 
-/*    public String getToken() {
-        return token;
+    public Set<Reservation> getReservations() {
+        return reservations;
     }
 
-    public void setToken(String token) {
-        this.token = token;
-    }*/
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
+    }
 }

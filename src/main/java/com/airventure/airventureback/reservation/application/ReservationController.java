@@ -24,6 +24,7 @@ public class ReservationController {
     Reservation readOne(@PathVariable Long id) {
         return reservationService.getOneReservation(id);
     }
+
     @CrossOrigin(origins = "http://localhost:4200/")
     @PostMapping( "/reservations")
     Reservation create(@RequestBody Reservation newReservation) {

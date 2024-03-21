@@ -7,8 +7,6 @@ import com.airventure.airventureback.authentication.domain.service.JwtTokenServi
 import com.airventure.airventureback.authentication.domain.service.UserDetailsServiceImpl;
 import com.airventure.airventureback.authentication.domain.service.UserLoginService;
 import com.airventure.airventureback.authentication.domain.service.UserRegisterService;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.*;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
@@ -50,6 +48,7 @@ public class AuthenticationController {
             userBodyDTO.setEmail(user.getEmail());
             userBodyDTO.setFirstName(user.getFirstName());
             userBodyDTO.setLastName(user.getLastName());
+            userBodyDTO.setReservations((user.getReservations()));
 
         return ResponseEntity.ok()
                     .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
