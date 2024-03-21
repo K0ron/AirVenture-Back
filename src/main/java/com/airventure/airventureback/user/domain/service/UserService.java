@@ -55,26 +55,17 @@ public class UserService {
 
 
     public User changePasswordWithAuthentication(UserPasswordChangeDTO userPasswordChangeDTO, Long id) {
-        try {
-            return repository.findById(id)
-                    .map(user -> {
-                        if (!userLoginService.verifyHashedPasswordDuringLogin(userPasswordChangeDTO.getPassword(), user.getPassword())) {
-                            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Wrong passwordssss");
-                        }
+        return repository.findById(id)
+                .map(user -> {
+                    if (!userLoginService.verifyHashedPasswordDuringLogin(userPasswordChangeDTO.getPassword(), user.getPassword())) {
+                        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Wrong password");
+                    }
 
-                        String newPassword = userPasswordChangeDTO.getNewPassword();
-                        String hashedPassword = userRegisterService.generateHashedPassword(newPassword);
-                        user.setPassword(hashedPassword);
-                        git push --set-upstream origin user-password-change
-                        return repository.save(user);
-                    })
-                    .orElseThrow(() -> new EntityNotFoundException("User not found"));
-        } catch (EntityNotFoundException ex) {
-            System.out.print(ex);
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
-        } catch (ResponseStatusException ex) {
-            System.out.print(ex);
-            throw ex;
+                    String newPassword = userPasswordChangeDTO.getNewPassword();
+                    String hashedPassword = userRegisterService.generateHashedPassword(newPassword);
+                    user.setPassword(hashedPassword);
+                    return repository.save(user);
+                })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Internal error, password was not changed"));
         }
     }
-}
