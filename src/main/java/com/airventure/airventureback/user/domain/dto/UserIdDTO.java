@@ -5,7 +5,7 @@ import com.airventure.airventureback.reservation.domain.entity.Reservation;
 import java.util.HashSet;
 import java.util.Set;
 
-public class UserBodyDTO {
+public class UserIdDTO {
     private Long id;
     private String firstName;
     private String lastName;

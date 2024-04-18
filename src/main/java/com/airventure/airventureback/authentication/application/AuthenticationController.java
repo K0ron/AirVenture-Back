@@ -1,7 +1,7 @@
 package com.airventure.airventureback.authentication.application;
 
 import com.airventure.airventureback.authentication.domain.entity.Token;
-import com.airventure.airventureback.user.domain.dto.UserBodyDTO;
+import com.airventure.airventureback.user.domain.dto.UserIdDTO;
 import com.airventure.airventureback.user.domain.entity.User;
 import com.airventure.airventureback.authentication.domain.service.JwtTokenService;
 import com.airventure.airventureback.authentication.domain.service.UserDetailsServiceImpl;
@@ -43,16 +43,13 @@ public class AuthenticationController {
                     .sameSite("Strict")
                     .build();
 
-            UserBodyDTO userBodyDTO = new UserBodyDTO();
-            userBodyDTO.setId(user.getId());
-            userBodyDTO.setEmail(user.getEmail());
-            userBodyDTO.setFirstName(user.getFirstName());
-            userBodyDTO.setLastName(user.getLastName());
-            userBodyDTO.setReservations((user.getReservations()));
+            UserIdDTO userIdDTO = new UserIdDTO();
+            userIdDTO.setId(user.getId());
+
 
         return ResponseEntity.ok()
                     .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
-                    .body(userBodyDTO); //cette ligne renvoie le DTO dans le body
+                    .body(userIdDTO); //cette ligne renvoie le DTO dans le body
                     /*.build();*/
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
