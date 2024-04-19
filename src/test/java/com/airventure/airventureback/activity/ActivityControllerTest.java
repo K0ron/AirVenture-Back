@@ -52,7 +52,7 @@ public class ActivityControllerTest {
     }
 
     @Test
-    public void testGetActivitiyById() throws Exception {
+    public void testGetActivityById() throws Exception {
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .get("/activities/0")
@@ -60,7 +60,7 @@ public class ActivityControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Parapente"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("Le parapente se pratiquqe avec une voile"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("Le parapente se pratique avec une voile"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.duration").value(1))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.location").value("Pyrénées, France"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(170))
