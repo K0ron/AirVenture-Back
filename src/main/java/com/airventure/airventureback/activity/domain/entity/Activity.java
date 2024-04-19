@@ -20,13 +20,13 @@ public class Activity {
     private String description;
 
     @Column(name = "duration", nullable = false)
-    private String duration;
+    private Integer duration;
 
     @Column(name ="location", nullable = false)
     private String location;
 
     @Column(name = "price", nullable = false)
-    private String price;
+    private Integer price;
 
     @ManyToMany
     @JoinTable(
@@ -68,11 +68,11 @@ public class Activity {
         this.description = description;
     }
 
-    public String getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 
@@ -84,11 +84,27 @@ public class Activity {
         this.location = location;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Set<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
