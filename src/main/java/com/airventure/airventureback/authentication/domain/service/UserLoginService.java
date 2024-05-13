@@ -25,6 +25,9 @@ public class UserLoginService {
         }
 
         user.setRoles(userEntity.getRoles());
+        user.setFirstName(userEntity.getFirstName());
+        user.setLastName(userEntity.getLastName());
+        user.setPassword(null);
         return user;
     }
 

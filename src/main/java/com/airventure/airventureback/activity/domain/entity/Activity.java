@@ -28,6 +28,9 @@ public class Activity {
     @Column(name = "price", nullable = false)
     private Integer price;
 
+    @Column(name = "picture", nullable = false)
+    private String picture;
+
     @ManyToMany
     @JoinTable(
             name = "activity_reservation",
@@ -90,6 +93,14 @@ public class Activity {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public Set<Reservation> getReservations() {

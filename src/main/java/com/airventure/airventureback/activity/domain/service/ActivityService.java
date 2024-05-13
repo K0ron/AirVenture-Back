@@ -36,6 +36,7 @@ public class ActivityService {
                     activity.setDuration(newActivity.getDuration());
                     activity.setLocation(newActivity.getLocation());
                     activity.setPrice(newActivity.getPrice());
+                    activity.setPicture(newActivity.getPicture());
 
                     return repository.save(activity);
                 })
