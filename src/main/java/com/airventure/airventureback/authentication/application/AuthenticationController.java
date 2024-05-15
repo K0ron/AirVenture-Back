@@ -43,13 +43,13 @@ public class AuthenticationController {
                     .sameSite("Strict")
                     .build();
 
-            UserIdDTO userIdDTO = new UserIdDTO();
-            userIdDTO.setId(user.getId());
+            UserIdDTO userBodyDTO = new UserIdDTO();
+            userBodyDTO.setId(user.getId());
 
 
         return ResponseEntity.ok()
                     .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
-                    .body(userIdDTO); //cette ligne renvoie le DTO dans le body
+                    .body(userBodyDTO); //cette ligne renvoie le DTO dans le body
                     /*.build();*/
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
