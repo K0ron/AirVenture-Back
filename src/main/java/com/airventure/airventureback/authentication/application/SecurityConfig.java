@@ -30,7 +30,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/login", "/register").permitAll()
-                        .requestMatchers("/user", "/user/**").authenticated()
+                        .requestMatchers("/user", "/user/**", "/password-change/**").authenticated()
                 )
                 .csrf((csrf) -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                         .ignoringRequestMatchers("/register", "/login")

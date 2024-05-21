@@ -7,9 +7,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-/*
-@Table(name = "`user`")
-*/
+
+//@Table(name = "`user`") uncomment for test usercontroller test
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

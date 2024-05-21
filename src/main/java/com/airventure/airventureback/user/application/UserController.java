@@ -25,7 +25,7 @@ public class UserController {
         return userService.updateUser(newUser, id);
     }
 
-    @PutMapping("/password-forgotten/{id}")
+    @PutMapping("/password-change/{id}")
     public ResponseEntity<?> editPassword(@RequestBody UserPasswordChangeDTO userPasswordChangeDTO, @PathVariable Long id) {
         try {
             User updatedUser = userService.changePasswordWithAuthentication(userPasswordChangeDTO, id);
