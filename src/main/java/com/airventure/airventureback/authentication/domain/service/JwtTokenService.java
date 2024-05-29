@@ -18,7 +18,8 @@ public class JwtTokenService {
 
 
 
-        private String secretKey = "ezvRWxgnYUDxjVh7VGd21eaD9RtLLR7q3c71aFcZ9hediQ0tFJNxeSbEBbrS5YNLxRGrt1R7f7TDTgWq9Qz063eNVdDPcxGyRae5P8LbMeddLznxbAkC66eLKhCzNb4CNGcfYhcadY6XWUAf3A2Jd7cxxRnhzpBBTZEDqhBVE341g5aGa5ym5dNPac5myvWnKT4rAzFd7UzNb9jChHf01gN0R3XLDXDX6EZXdkixUTkTj68AExePU6hKedLuBSgx";
+        private final String secretKey = System.getenv("SECRET_KEY");
+
         private static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
         public Token generateToken(UserDetails userDetails) {
             Date now = new Date();

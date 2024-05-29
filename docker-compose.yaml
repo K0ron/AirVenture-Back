@@ -4,9 +4,8 @@ services:
     container_name: air-venture-db
     image: mysql
     restart: always
-    environment:
-      MYSQL_DATABASE: 'air_venture'
-      MYSQL_ROOT_PASSWORD: 'Eleandil.1984'
+    env_file:
+      - .env
     ports:
       - '3307:3306'
     volumes:
