@@ -1,6 +1,7 @@
 package com.airventure.airventureback.authentication.application;
 
 import com.airventure.airventureback.authentication.domain.entity.Token;
+import com.airventure.airventureback.user.domain.dto.UserIdDTO;
 import com.airventure.airventureback.user.domain.entity.User;
 import com.airventure.airventureback.authentication.domain.service.JwtTokenService;
 import com.airventure.airventureback.authentication.domain.service.UserDetailsServiceImpl;
@@ -8,9 +9,7 @@ import com.airventure.airventureback.authentication.domain.service.UserLoginServ
 import com.airventure.airventureback.authentication.domain.service.UserRegisterService;
 import org.springframework.http.*;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AuthenticationController {
@@ -36,6 +35,7 @@ public class AuthenticationController {
         try {
             userLoginService.login(userBody);
             Token token = jwtTokenService.generateToken(userDetailsService.loadUserByUsername(userBody.getEmail()));
+            User user = userLoginService.getUserEntityByEmail(userBody.getEmail());
             ResponseCookie jwtCookie = ResponseCookie.from("token", token.getToken())
                     .httpOnly(true)
                     .path("/")
@@ -43,9 +43,14 @@ public class AuthenticationController {
                     .sameSite("Strict")
                     .build();
 
-            return ResponseEntity.ok()
+            UserIdDTO userBodyDTO = new UserIdDTO();
+            userBodyDTO.setId(user.getId());
+
+
+        return ResponseEntity.ok()
                     .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
-                    .build();
+                    .body(userBodyDTO); //cette ligne renvoie le DTO dans le body
+                    /*.build();*/
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
@@ -53,11 +58,24 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User userBody) throws Exception {
-        System.out.println(userBody);
         try {
             return ResponseEntity.status(201).body(userRegisterService.UserRegister(userBody));
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(400).build();
         }
     }
+
+   /* @PostMapping("/logout")
+    public void logout(HttpServletResponse response, @CookieValue(name = "token", required = false) Cookie cookie) {
+        if (cookie != null) {
+            ResponseCookie deleteCookie = ResponseCookie.from("token", "")
+                    .httpOnly(true)
+                    .path("/")
+                    .maxAge(0)
+                    .sameSite("Strict")
+                    .build();
+
+            response.addHeader(HttpHeaders.SET_COOKIE, deleteCookie.toString());
+        }
+    } marche pas*/
 }

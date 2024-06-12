@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+//@Table(name = "`user`") uncomment for test usercontroller test
+
 @Table(name= "`user`")
 public class User {
     @Id
@@ -99,11 +101,11 @@ public class User {
         this.roles = roles;
     }
 
-/*    public String getToken() {
-        return token;
+    public Set<Reservation> getReservations() {
+        return reservations;
     }
 
-    public void setToken(String token) {
-        this.token = token;
-    }*/
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
+    }
 }

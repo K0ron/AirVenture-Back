@@ -5,6 +5,9 @@ target/
 !**/src/test/**/target/
 upload-dir/
 
+### Environment Variables ###
+.env
+
 ### STS ###
 .apt_generated
 .classpath
