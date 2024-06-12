@@ -31,10 +31,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/login", "/register").permitAll()
                         .requestMatchers("/user", "/user/**", "/password-change/**").authenticated()
+                      //  .anyRequest().permitAll()
                 )
                 .csrf((csrf) -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                         .ignoringRequestMatchers("/register", "/login")
-                        .disable()
+                        .disable() // Décommentez pour désactiver en entier la protection CSRF en développement
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
