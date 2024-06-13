@@ -7,6 +7,9 @@ import com.airventure.airventureback.authentication.domain.service.JwtTokenServi
 import com.airventure.airventureback.authentication.domain.service.UserDetailsServiceImpl;
 import com.airventure.airventureback.authentication.domain.service.UserLoginService;
 import com.airventure.airventureback.authentication.domain.service.UserRegisterService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.*;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
@@ -65,8 +68,8 @@ public class AuthenticationController {
         }
     }
 
-   /* @PostMapping("/logout")
-    public void logout(HttpServletResponse response, @CookieValue(name = "token", required = false) Cookie cookie) {
+  /*  @PostMapping("/logout")
+    public String logout(HttpServletResponse response, @CookieValue(name = "token", required = false) Cookie cookie) {
         if (cookie != null) {
             ResponseCookie deleteCookie = ResponseCookie.from("token", "")
                     .httpOnly(true)
@@ -77,5 +80,7 @@ public class AuthenticationController {
 
             response.addHeader(HttpHeaders.SET_COOKIE, deleteCookie.toString());
         }
-    } marche pas*/
+
+        return "redirect:/login";
+    }*/
 }

@@ -6,8 +6,10 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import io.github.cdimascio.dotenv.Dotenv;
 
 import java.security.Key;
 import java.util.Date;
@@ -16,9 +18,11 @@ import java.util.function.Function;
 @Service
 public class JwtTokenService {
 
-
-
-        private final String secretKey = System.getenv("SECRET_KEY");
+    private String secretKey;
+    @Autowired
+    public JwtTokenService  (Dotenv dotenv) {
+        this.secretKey = dotenv.get("SECRET_KEY");
+    }
 
         private static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
         public Token generateToken(UserDetails userDetails) {
